@@ -1,0 +1,16 @@
+.inputContainer {
+  display: flex;
+  justify-content: center;
+
+  &>div {
+    margin-right: 12px;
+  }
+}
+
+.intro {
+  line-height: 28px;
+}
+
+.sliderWrapper {
+  width: 120px;
+}
