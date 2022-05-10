@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Cropper, getCroppedImg } from "react-cropper-custom";
 import "react-cropper-custom/dist/index.css";
-// import { Hello } from "rollup-test";
 import { Area } from "./types/types";
 import { Button } from "antd";
 import "antd/dist/antd.css";
