@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Cropper, getCroppedImg } from "react-cropper-custom";
 import "react-cropper-custom/dist/index.css";
 import { Area } from "./types/types";
@@ -15,13 +15,23 @@ const MAX = 3;
 
 const App = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [cropArea, setCropArea] = useState<Area>({
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+  });
   const [img, setImg] = useState(IMAGE);
   const [zoom, setZoom] = useState(1);
   const [aspect, setAspect] = useState(1);
 
-  const onCropComplete = async (croppedArea: Area) => {
+  const onCropComplete = (croppedArea: Area) => {
+    setCropArea(croppedArea);
+  };
+
+  const showModal = async () => {
     try {
-      const image = await getCroppedImg(IMAGE, croppedArea, {
+      const image = await getCroppedImg(IMAGE, cropArea, {
         width: 1200,
         height: 1200 * aspect,
       });
@@ -29,9 +39,6 @@ const App = () => {
     } catch (e) {
       console.error(e);
     }
-  };
-
-  const showModal = () => {
     setIsModalVisible(true);
   };
 
